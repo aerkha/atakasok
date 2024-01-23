@@ -58,40 +58,6 @@
     }
   }
 
-  function speakText(index = 0) {
-    if (!currentPage || !Array.isArray(currentPage) || index >= currentPage.length) {
-      console.error('Error: contentArray is not defined, is not an array, or index is out of bounds.');
-      return;
-    }
-  
-    const currentPair = currentPage[index];
-  
-    if (currentPair && currentPair.word && currentPair.translation && 'speechSynthesis' in window) {
-      const synthesis = window.speechSynthesis;
-      const koreanWord = currentPair.word;
-      const indonesianTranslation = currentPair.translation;
-  
-      const koreanUtterance = new SpeechSynthesisUtterance(koreanWord);
-      koreanUtterance.lang = 'ko-KR';
-      koreanUtterance.rate = 0.4;
-  
-      const indonesianUtterance = new SpeechSynthesisUtterance(indonesianTranslation);
-      indonesianUtterance.lang = 'id-ID';
-      indonesianUtterance.rate = 0.7;
-  
-      // Tambahkan utterance korea ke synthesis
-      synthesis.speak(koreanUtterance);
-  
-      // Setelah utterance korea selesai, tambahkan utterance terjemahan
-      koreanUtterance.onend = () => {
-        synthesis.speak(indonesianUtterance);
-      };
-  
-      // Setelah utterance terjemahan selesai, lanjutkan ke pasangan kata berikutnya (rekursif)
-      indonesianUtterance.onend = () => {
-        speakText(index + 1);
-      };
-    } else {
-      console.error('Text-to-Speech not supported in this browser or contentArray does not contain the expected structure.');
-    }
+  function speakText() {
+   alert("Audionya belum nemu yang bagus gaes, tunggu ya");
   }
