@@ -1,32 +1,53 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KOSAKATA</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="./style.css">
+    <script type='text/javascript' src='//pl22252374.toprevenuegate.com/a6/f4/d6/a6f4d628016b33caca1e1dae13c5285f.js'></script>
 </head>
-<body background="./asset/background.jpg">
-    <div id="content-container"></div>
-    <div id="pagination-container"></div>
-    <section id="english">
-        <div class="col-lg-6 col-xxl-4 my-auto mx-auto">
-            <div class="d-grid gap-2 justify-content-center py-5">
-              <h1 class="judul">KOSAKATA TOEFL</h1>
-              <button type="button" class="btn btn-primary btn-lg px-4 me-md-2" onclick="openBook('verb.txt')">VERB</button>
-              <button type="button" class="btn btn-primary btn-lg px-4 me-md-2" onclick="openBook('adjective.txt')">ADJECTIVE</button>
-              <button type="button" class="btn btn-primary btn-lg px-4 me-md-2" onclick="openBook('noun.txt')">NOUN</button>
-              <button type="button" class="btn btn-primary btn-lg px-4 me-md-2" onclick="openBook('mix.txt')">MISC</button>
-            </div>
-          </div>
-        <div id="book-modal">
-            <div id="book-content">
-                <span id="close-modal" onclick="closeBook()">X</span>
-                <iframe id="book-iframe" width="100%" height="400"></iframe>
-            </div>
-        </div>
-    </section>
+<body>
 
-    <script src="index.js"></script>
+<div class="d-grid gap-2 justify-content-center py-5">
+    <h1 style="color: beige;">KOSAKATA TOEFL</h1>
+    <button type="button" class="btn btn-primary btn-lg px-4 me-md-2" onclick="openBook('./asset/verb.json')">VERB</button>
+    <button type="button" class="btn btn-primary btn-lg px-4 me-md-2" onclick="openBook('./asset/adjective.json')">ADJECTIVE</button>
+    <button type="button" class="btn btn-primary btn-lg px-4 me-md-2" onclick="openBook('./asset/noun.json')">NOUN</button>
+    <button type="button" class="btn btn-primary btn-lg px-4 me-md-2" onclick="openBook('./asset/mix.json')">MISC</button>
+</div>
+
+<div class="modal fade" id="multiPagesModal" tabindex="-1" role="dialog" oncontextmenu="return false;" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalTitle"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="modalContent">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick="previousPage()">Kembali</button>
+        <button type="button" class="btn btn-secondary" onclick="speakText()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-volume-up" viewBox="0 0 16 16">
+            <path d="M11.536 14.01A8.47 8.47 0 0 0 14.026 8a8.47 8.47 0 0 0-2.49-6.01l-.708.707A7.48 7.48 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303z"/>
+            <path d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.48 5.48 0 0 1 11.025 8a5.48 5.48 0 0 1-1.61 3.89z"/>
+            <path d="M10.025 8a4.5 4.5 0 0 1-1.318 3.182L8 10.475A3.5 3.5 0 0 0 9.025 8c0-.966-.392-1.841-1.025-2.475l.707-.707A4.5 4.5 0 0 1 10.025 8M7 4a.5.5 0 0 0-.812-.39L3.825 5.5H1.5A.5.5 0 0 0 1 6v4a.5.5 0 0 0 .5.5h2.325l2.363 1.89A.5.5 0 0 0 7 12zM4.312 6.39 6 5.04v5.92L4.312 9.61A.5.5 0 0 0 4 9.5H2v-3h2a.5.5 0 0 0 .312-.11"/>
+          </svg></button>
+        <button type="button" class="btn btn-success" onclick="nextPage()">Berikutnya</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="index.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script>!function(){"use strict";window.addEventListener("contextmenu",(e=>{e.preventDefault()})),window.addEventListener("keydown",(e=>{e.ctrlKey&&e.preventDefault(),e.altKey&&e.preventDefault(),e.metaKey&&e.preventDefault(),e.shiftKey&&e.preventDefault(),e.repeat&&e.preventDefault()})),window.addEventListener("dblclick",(()=>{document.querySelector("body").setAttribute("style","user-select: none;")})),window.addEventListener("click",(()=>{document.querySelector("body").setAttribute("style","user-select: none;")}))}();</script>
+<script type='text/javascript' src='//pl22240813.toprevenuegate.com/9a/c9/b7/9ac9b74c64e1e4c8bdca5682c81f181d.js'></script>
 </body>
 </html>

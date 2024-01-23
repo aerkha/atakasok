@@ -58,6 +58,28 @@
     }
   }
 
-  function speakText() {
-   alert("Audionya belum nemu yang bagus gaes, tunggu ya");
+  function speakText(index = 0) {
+    alert("Audionya belum nemu yang bagus gaes, tunggu ya");
   }
+
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyC0AZhoPi4iuxSli9HTlu0Ynto_CL0iv5o",
+  authDomain: "kosakata-389e4.firebaseapp.com",
+  projectId: "kosakata-389e4",
+  storageBucket: "kosakata-389e4.appspot.com",
+  messagingSenderId: "576416539595",
+  appId: "1:576416539595:web:ebb300ce2cfafee1794c4e",
+  measurementId: "G-LT6YDPRM6C"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
